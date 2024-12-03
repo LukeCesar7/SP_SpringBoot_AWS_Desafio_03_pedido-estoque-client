@@ -1,0 +1,38 @@
+version: '3.8'
+
+
+services:
+  app-cliente:
+    image: cliente-app:latest
+    container_name: app-cliente
+    depends_on:
+      - db-cliente
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db-cliente:5432/db_cliente
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=12345678
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    networks:
+      - microservices
+    ports:
+      - "8081:8081"
+
+
+  db-cliente:
+    image: postgres
+    container_name: db-cliente
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=12345678
+      - POSTGRES_DB=db_cliente
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - microservices
+    ports:
+      - "5432:5432"
+volumes:
+  db-data:
+
+networks:
+  microservices :
