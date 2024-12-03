@@ -1,0 +1,38 @@
+version: '3.8'
+
+
+services:
+  app-pedido:
+    image: pedido-app:latest
+    container_name: app-pedido
+    depends_on:
+      - db-pedido
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db-pedido:5432/db_pedido
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=12345678
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    networks:
+      - microservices
+    ports:
+      - "8080:8080"
+
+
+  db-pedido:
+    image: postgres
+    container_name: db-pedido
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=12345678
+      - POSTGRES_DB=db_pedido
+    volumes:
+      - db-data-pedido:/var/lib/postgresql/data
+    networks:
+      - microservices
+    ports:
+      - "5434:5432"
+volumes:
+  db-data-pedido:
+
+networks:
+  microservices :
