@@ -51,6 +51,6 @@
   * https://www.postman.com/downloads/
 
 - Instale o programa
-- Importe o arquivo de teses diponibilizado acima
+- Importe o arquivo de teses diponibilizado acima (**MicroServiços.json**)
 
   -Aproveite o Sistema.
