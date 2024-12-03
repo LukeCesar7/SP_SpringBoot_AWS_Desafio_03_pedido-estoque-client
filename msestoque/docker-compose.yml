@@ -1,0 +1,38 @@
+version: '3.8'
+
+
+services:
+  app-estoque:
+    image: estoque-app:latest
+    container_name: app-estoque
+    depends_on:
+      - db-estoque
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db-estoque:5432/db_estoque
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=12345678
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    networks:
+      - microservices
+    ports:
+      - "8082:8082"
+
+
+  db-estoque:
+    image: postgres
+    container_name: db-estoque
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=12345678
+      - POSTGRES_DB=db_estoque
+    volumes:
+      - db-data-estoque:/var/lib/postgresql/data
+    networks:
+      - microservices
+    ports:
+      - "5433:5432"
+volumes:
+  db-data-estoque:
+
+networks:
+  microservices :
