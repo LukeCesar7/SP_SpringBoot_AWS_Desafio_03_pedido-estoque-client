@@ -1,7 +1,7 @@
 
 
 <h1 align="center"> Compass UOL | Udemy Business </h1>
-<p align="center"> DESENVOLVIMENTO 03 </p>
+<p align="center"> Desafio 03 </p>
 
 <img src="https://github.com/LukeCesar7/SP_SpringBoot_AWS_Desafio_03_pedido-estoque-client/blob/main/imagens/%23feeecc.png">
 
